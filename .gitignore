@@ -1,3 +1,20 @@
+# WordPress core
+/wordpress/*
+
+# WordPress installation
+/wordpress/
+
+# Our custom WordPress code
+!/wordpress/wp-content/
+!/wordpress/wp-content/plugins/
+!/wordpress/wp-content/plugins/atlas/
+!/wordpress/wp-content/themes/
+!/wordpress/wp-content/themes/atlas/
+
+# WordPress generated content
+/wordpress/wp-content/uploads/
+/wordpress/wp-content/cache/
+
 # Dependencies
 /vendor/
 /node_modules/
@@ -5,9 +22,6 @@
 # Environment
 .env
 .env.*
-
-# WordPress generated files
-wp-content/uploads/
 
 # OS
 .DS_Store

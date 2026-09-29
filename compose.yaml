@@ -9,7 +9,7 @@ services:
       WORDPRESS_DB_PASSWORD: atlas_password
       WORDPRESS_DB_NAME: atlas
     volumes:
-      - wordpress_data:/var/www/html
+       - ./wordpress:/var/www/html
 
   db:
     image: mysql:8.4
@@ -22,5 +22,4 @@ services:
       - db_data:/var/lib/mysql
 
 volumes:
-  wordpress_data:
   db_data:
