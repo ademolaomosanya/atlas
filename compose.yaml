@@ -1,0 +1,26 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: atlas
+      WORDPRESS_DB_PASSWORD: atlas_password
+      WORDPRESS_DB_NAME: atlas
+    volumes:
+      - wordpress_data:/var/www/html
+
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: atlas
+      MYSQL_USER: atlas
+      MYSQL_PASSWORD: atlas_password
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  wordpress_data:
+  db_data:
