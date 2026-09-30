@@ -21,6 +21,7 @@ final class Event {
                     'editor',
                     'excerpt',
                     'thumbnail',
+                    'custom-fields',
                 ],
                 'has_archive'  => true,
                 'rewrite'      => [

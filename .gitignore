@@ -32,3 +32,6 @@
 
 # Logs
 *.log
+
+# PHPUnit
+.phpunit.cache/

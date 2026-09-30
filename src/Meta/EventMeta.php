@@ -4,49 +4,42 @@ declare(strict_types=1);
 
 namespace Atlas\Meta;
 
+use Atlas\Security\MetaAccess;
+
 final class EventMeta {
 
-    public static function register(): void {
-        register_post_meta(
-            'atlas_event',
-            'atlas_start_date',
-            [
-                'type'              => 'string',
-                'single'            => true,
-                'show_in_rest'      => true,
-                'sanitize_callback' => 'sanitize_text_field',
-                'auth_callback'     => static function (): bool {
-                    return current_user_can( 'edit_posts' );
-                },
-            ]
-        );
+	public static function register(): void {
+		$shared = [
+			'single'       => true,
+			'show_in_rest' => true,
+			'auth_callback' => [ MetaAccess::class, 'can_edit' ],
+		];
 
-        register_post_meta(
-            'atlas_event',
-            'atlas_end_date',
-            [
-                'type'              => 'string',
-                'single'            => true,
-                'show_in_rest'      => true,
-                'sanitize_callback' => 'sanitize_text_field',
-                'auth_callback'     => static function (): bool {
-                    return current_user_can( 'edit_posts' );
-                },
-            ]
-        );
+		register_post_meta(
+			'atlas_event',
+			'atlas_start_date',
+			$shared + [
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_text_field',
+			]
+		);
 
-        register_post_meta(
-            'atlas_event',
-            'atlas_capacity',
-            [
-                'type'              => 'integer',
-                'single'            => true,
-                'show_in_rest'      => true,
-                'sanitize_callback' => 'absint',
-                'auth_callback'     => static function (): bool {
-                    return current_user_can( 'edit_posts' );
-                },
-            ]
-        );
-    }
+		register_post_meta(
+			'atlas_event',
+			'atlas_end_date',
+			$shared + [
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_text_field',
+			]
+		);
+
+		register_post_meta(
+			'atlas_event',
+			'atlas_capacity',
+			$shared + [
+				'type'              => 'integer',
+				'sanitize_callback' => 'absint',
+			]
+		);
+	}
 }
